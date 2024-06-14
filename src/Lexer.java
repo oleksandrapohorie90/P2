@@ -53,10 +53,22 @@ public class Lexer {
                     if (isDigit(ch)) {
                         tokens.add(new Token(TokenType.NUMBER, readNumber()));
                     }else if(isAlpha(ch)){
-
+                        //we will have an identifier and lets read an identifier
+                        //based on this identifier we will read and based on type:CONFIG,NUMBER etc, we will know
+                        String identifier = readIdentifier();
                     }
             }
         }
+    }
+
+    private String readIdentifier() {
+       //read while it is Alphanumeric, continue reading
+        StringBuilder stringBuilder = new StringBuilder();
+        while (current < inpout.length() && isAlphaNumeric(inpout.charAt(current))) {
+            stringBuilder.append(inpout.charAt(current));
+            current++;
+        }
+        return stringBuilder.toString();
     }
 
     private String readNumber() {
