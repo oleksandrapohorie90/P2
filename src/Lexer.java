@@ -1,5 +1,6 @@
 import LexerError.LexerError;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -9,22 +10,23 @@ public class Lexer implements Iterable<Lexer.Token> {
     //lexer will be iterating through, we give string as input as string and output as tokens
     //configuration code, can be file too
 
-    private final String inpout;
+    private final String input;
     private final List<Token> tokens;
     private int current;
 
-    public Lexer(String inpout, List<Token> tokens) {
-        this.inpout = inpout;
-        this.tokens = tokens;
+    public Lexer(String inpout) {
+        this.input = inpout;
+        this.tokens = new ArrayList<Token>();
         this.current = 0;
+        tokenize();
     }
 
-    private void tokenize() {
+    public void tokenize() {
         //anything that is in our BNF form
         //word config, update,compute
         //to go over each element and see what are we reading
-        while (current < inpout.length()) {
-            char ch = inpout.charAt(current);
+        while (current < input.length()) {
+            char ch = input.charAt(current);
             switch (ch) {
                 case ' ':
                 case '\t':
@@ -82,8 +84,8 @@ public class Lexer implements Iterable<Lexer.Token> {
     private String readIdentifier() {
         //read while it is Alphanumeric, continue reading
         StringBuilder stringBuilder = new StringBuilder();
-        while (current < inpout.length() && isAlphaNumeric(inpout.charAt(current))) {
-            stringBuilder.append(inpout.charAt(current));
+        while (current < input.length() && isAlphaNumeric(input.charAt(current))) {
+            stringBuilder.append(input.charAt(current));
             current++;
         }
         return stringBuilder.toString();
@@ -91,8 +93,8 @@ public class Lexer implements Iterable<Lexer.Token> {
 
     private String readNumber() {
         StringBuilder stringBuilder = new StringBuilder();
-        while (current < inpout.length() && isDigit(inpout.charAt(current))) {
-            stringBuilder.append(inpout.charAt(current));
+        while (current < input.length() && isDigit(input.charAt(current))) {
+            stringBuilder.append(input.charAt(current));
             current++;
         }
         return stringBuilder.toString();
@@ -101,8 +103,8 @@ public class Lexer implements Iterable<Lexer.Token> {
     private String readReference() {
         StringBuilder builder = new StringBuilder();
         current++;
-        while (current < inpout.length() && isAlphaNumeric(inpout.charAt(current))) {
-            builder.append(inpout.charAt(current));
+        while (current < input.length() && isAlphaNumeric(input.charAt(current))) {
+            builder.append(input.charAt(current));
             current++;
         }
         return builder.toString();
@@ -124,15 +126,15 @@ public class Lexer implements Iterable<Lexer.Token> {
         //we know how to read a str that starts with "
         StringBuilder builder = new StringBuilder();
         current++;
-        while (current < inpout.length() && inpout.charAt(current) != '"') {
-            builder.append(inpout.charAt(current));
+        while (current < input.length() && input.charAt(current) != '"') {
+            builder.append(input.charAt(current));
             current++;
         }
         return builder.toString();
     }
 
     @Override
-    public Iterator iterator() {
+    public Iterator<Token> iterator() {
         return tokens.iterator();
     }
 
