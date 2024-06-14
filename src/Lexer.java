@@ -1,7 +1,10 @@
+import LexerError.LexerError;
+
+import java.util.Iterator;
 import java.util.List;
 
 
-public class Lexer {
+public class Lexer implements Iterable<Lexer.Token> {
 
     //lexer will be iterating through, we give string as input as string and output as tokens
     //configuration code, can be file too
@@ -47,22 +50,37 @@ public class Lexer {
                     break;
                 case '%':
                     tokens.add(new Token(TokenType.REFERENCES, readReference()));//its an ASSIGNMENT, so we need it
-                    current++;
+                    //current++;
                     break;
                 default:
                     if (isDigit(ch)) {
                         tokens.add(new Token(TokenType.NUMBER, readNumber()));
-                    }else if(isAlpha(ch)){
+                    } else if (isAlpha(ch)) {
                         //we will have an identifier and lets read an identifier
                         //based on this identifier we will read and based on type:CONFIG,NUMBER etc, we will know
                         String identifier = readIdentifier();
+                        tokens.add(new Token(deriveTokenType(identifier), identifier));
+                    } else {
+                        throw new LexerError("Unsupported character: " + ch);
                     }
             }
         }
     }
 
+    //CONFIG is definition and configs
+    private static TokenType deriveTokenType(String identifier) {
+        return switch (identifier) {
+            case "config" -> TokenType.CONFIG;
+            case "update" -> TokenType.UPDATE;
+            case "compute" -> TokenType.COMPUTE;
+            case "show" -> TokenType.SHOW;
+            case "configs" -> TokenType.CONFIGS;
+            default -> TokenType.IDENTIFIER;
+        };
+    }
+
     private String readIdentifier() {
-       //read while it is Alphanumeric, continue reading
+        //read while it is Alphanumeric, continue reading
         StringBuilder stringBuilder = new StringBuilder();
         while (current < inpout.length() && isAlphaNumeric(inpout.charAt(current))) {
             stringBuilder.append(inpout.charAt(current));
@@ -111,6 +129,11 @@ public class Lexer {
             current++;
         }
         return builder.toString();
+    }
+
+    @Override
+    public Iterator iterator() {
+        return tokens.iterator();
     }
 
     static class Token {
