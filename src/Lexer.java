@@ -49,17 +49,33 @@ public class Lexer {
                     tokens.add(new Token(TokenType.REFERENCES, readReference()));//its an ASSIGNMENT, so we need it
                     current++;
                     break;
+                default:
+                    if (isDigit(ch)) {
+                        tokens.add(new Token(TokenType.NUMBER, readNumber()));
+                    }else if(isAlpha(ch)){
+
+                    }
             }
         }
+    }
+
+    private String readNumber() {
+        StringBuilder stringBuilder = new StringBuilder();
+        while (current < inpout.length() && isDigit(inpout.charAt(current))) {
+            stringBuilder.append(inpout.charAt(current));
+            current++;
+        }
+        return stringBuilder.toString();
     }
 
     private String readReference() {
         StringBuilder builder = new StringBuilder();
         current++;
-        while(current< inpout.length() && isAlphaNumeric()){
+        while (current < inpout.length() && isAlphaNumeric(inpout.charAt(current))) {
             builder.append(inpout.charAt(current));
             current++;
         }
+        return builder.toString();
     }
 
     private boolean isAlphaNumeric(char c) {
@@ -67,25 +83,25 @@ public class Lexer {
     }
 
     private static boolean isDigit(char c) {
-        return isDigit(c);
+        return '0' <= c && c <= '9';
     }
 
     private static boolean isAlpha(char c) {
-        return ('a' <= c && c <='z') ||('A' <= c && c <='Z');
+        return ('a' <= c && c <= 'z') || ('A' <= c && c <= 'Z');
     }
 
-    private String readString()
-{
-    //we know how to read a str that starts with "
-    StringBuilder builder = new StringBuilder();
-    current++;
-    while(current< inpout.length() && inpout.charAt(current)!='"'){
-        builder.append(inpout.charAt(current));
+    private String readString() {
+        //we know how to read a str that starts with "
+        StringBuilder builder = new StringBuilder();
         current++;
+        while (current < inpout.length() && inpout.charAt(current) != '"') {
+            builder.append(inpout.charAt(current));
+            current++;
+        }
+        return builder.toString();
     }
-    return  builder.toString();
-}
- static class Token {
+
+    static class Token {
         final TokenType type;
         final String value;
 
