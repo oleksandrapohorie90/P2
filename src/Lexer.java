@@ -53,13 +53,25 @@ public class Lexer {
         }
     }
 
-    private static String readReference() {
+    private String readReference() {
         StringBuilder builder = new StringBuilder();
         current++;
-        while(current< inpout.length() && inpout.charAt(current)!='"'){
+        while(current< inpout.length() && isAlphaNumeric()){
             builder.append(inpout.charAt(current));
             current++;
         }
+    }
+
+    private boolean isAlphaNumeric(char c) {
+        return isAlpha(c) || isDigit(c);
+    }
+
+    private static boolean isDigit(char c) {
+        return isDigit(c);
+    }
+
+    private static boolean isAlpha(char c) {
+        return ('a' <= c && c <='z') ||('A' <= c && c <='Z');
     }
 
     private String readString()
