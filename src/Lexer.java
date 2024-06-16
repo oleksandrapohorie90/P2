@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class Lexer implements Iterable<Lexer.Token> {
     private final String input;
-    private final List<Demo.Token> tokens;
+    private final List<Lexer.Token> tokens;
     private int current;
 
     public Lexer(String input, List<Lexer.Token> tokens) {
@@ -14,11 +14,6 @@ public class Lexer implements Iterable<Lexer.Token> {
         this.tokens = new ArrayList<>();
         this.current = 0;
         tokenize();
-    }
-
-    @Override
-    public Iterator<Token> iterator() {
-        return null;
     }
 
     public void tokenize() {
@@ -35,38 +30,60 @@ public class Lexer implements Iterable<Lexer.Token> {
                     current++;
                     break;
                 case '=':
-                    tokens.add(new Demo.Token(Demo.TokenType.ASSIGNMENT, "="));//its an ASSIGNMENT, so we need it
+                    tokens.add(new Token(TokenType.ASSIGNMENT, "="));
                     current++;
                     break;
-
                 case '+':
                 case '-':
                 case '*':
                 case '/':
-                    tokens.add(new Demo.Token(Demo.TokenType.OPERATOR, Character.toString(ch)));//its an ASSIGNMENT, so we need it
+                case '>':
+                case '<':
+                    tokens.add(new Token(TokenType.OPERATOR, Character.toString(ch)));
                     current++;
                     break;
-                case '"':
-                    tokens.add(new Demo.Token(Demo.TokenType.STRING, readString()));//its an ASSIGNMENT, so we need it
+                case '(':
+                case ')':
+                case '{':
+                case '}':
+                case ';':
+                    tokens.add(new Token(TokenType.PUNCTUATION, Character.toString(ch)));
                     current++;
-                    break;
-                case '%':
-                    tokens.add(new Demo.Token(Demo.TokenType.REFERENCES, readReference()));//its an ASSIGNMENT, so we need it
-                    //current++;
                     break;
                 default:
-                    if (isDigit(ch)) {
-                        tokens.add(new Demo.Token(Demo.TokenType.NUMBER, readNumber()));
-                    } else if (isAlpha(ch)) {
-                        //we will have an identifier and lets read an identifier
-                        //based on this identifier we will read and based on type:CONFIG,NUMBER etc, we will know
-                        String identifier = readIdentifier();
-                        tokens.add(new Demo.Token(deriveTokenType(identifier), identifier));
+                    if (Character.isDigit(ch)) {
+                        tokens.add(new Token(TokenType.NUMBER, readNumber()));
+                    } else if (Character.isLetter(ch)) {
+                        tokens.add(new Token(TokenType.IDENTIFIER, readIdentifier()));
                     } else {
                         throw new LexerError("Unsupported character: " + ch);
                     }
             }
         }
+    }
+
+    private String readNumber() {
+        StringBuilder stringBuilder = new StringBuilder();
+        while (current < input.length() && Character.isDigit(input.charAt(current))) {
+            stringBuilder.append(input.charAt(current));
+            current++;
+        }
+        return stringBuilder.toString();
+    }
+    private String readIdentifier() {
+        //read while it is Alphanumeric, continue reading
+        StringBuilder stringBuilder = new StringBuilder();
+        while (current < input.length() && (Character.isLetterOrDigit(input.charAt(current)) || input.charAt(current) == '_')) {
+            stringBuilder.append(input.charAt(current));
+            current++;
+        }
+        return stringBuilder.toString();
+    }
+
+    //interface override rules
+    @Override
+    public Iterator<Token> iterator() {
+        return tokens.iterator();
     }
 
     //For output
