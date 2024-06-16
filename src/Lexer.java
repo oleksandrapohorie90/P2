@@ -51,7 +51,7 @@ public class Lexer implements Iterable<Lexer.Token> {
                     current++;
                     break;
                 case '"':
-                    tokens.add(new Demo.Token(Demo.TokenType.STRING, readString()));
+                    tokens.add(new Token(TokenType.STRING, readString()));
                     current++;
                     break;
                 default:
