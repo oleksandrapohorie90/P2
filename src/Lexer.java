@@ -57,12 +57,12 @@ public class Lexer implements Iterable<Lexer.Token> {
                 default:
                     if (Character.isDigit(ch)) {
                         tokens.add(new Token(TokenType.NUMBER, readNumber()));
-                    } else if (Character.isLetter(ch)) {
-                        tokens.add(new Token(TokenType.IDENTIFIER, readIdentifier()));
                     } else if (ch == 'p' && input.startsWith("print", current)) {
                         tokens.add(new Token(TokenType.PRINT, "print"));
-
-                    } else {
+                        current += 5;
+                    } else if (Character.isLetter(ch)) {
+                        tokens.add(new Token(TokenType.IDENTIFIER, readIdentifier()));
+                    }  else {
                         throw new LexerError("Unsupported character: " + ch);
                     }
             }
