@@ -50,11 +50,17 @@ public class Lexer implements Iterable<Lexer.Token> {
                     tokens.add(new Token(TokenType.PUNCTUATION, Character.toString(ch)));
                     current++;
                     break;
+                case '"':
+                    tokens.add(new Demo.Token(Demo.TokenType.STRING, readString()));
+                    current++;
+                    break;
                 default:
                     if (Character.isDigit(ch)) {
                         tokens.add(new Token(TokenType.NUMBER, readNumber()));
                     } else if (Character.isLetter(ch)) {
                         tokens.add(new Token(TokenType.IDENTIFIER, readIdentifier()));
+                    } else if (ch == '"') {
+
                     } else {
                         throw new LexerError("Unsupported character: " + ch);
                     }
@@ -70,10 +76,22 @@ public class Lexer implements Iterable<Lexer.Token> {
         }
         return stringBuilder.toString();
     }
+
     private String readIdentifier() {
         //read while it is Alphanumeric, continue reading
         StringBuilder stringBuilder = new StringBuilder();
         while (current < input.length() && (Character.isLetterOrDigit(input.charAt(current)) || input.charAt(current) == '_')) {
+            stringBuilder.append(input.charAt(current));
+            current++;
+        }
+        return stringBuilder.toString();
+    }
+
+    private String readString() {
+        //we know how to read a str that starts with "
+        StringBuilder stringBuilder = new StringBuilder();
+        current++;
+        while (current < input.length() && input.charAt(current) != '"') {
             stringBuilder.append(input.charAt(current));
             current++;
         }
@@ -95,6 +113,7 @@ public class Lexer implements Iterable<Lexer.Token> {
             this.type = type;
             this.value = value;
         }
+
         @Override
         public String toString() {
             return "Token{" +
