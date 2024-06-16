@@ -9,7 +9,7 @@ public class Lexer implements Iterable<Lexer.Token> {
     private final List<Lexer.Token> tokens;
     private int current;
 
-    public Lexer(String input, List<Lexer.Token> tokens) {
+    public Lexer(String input) {
         this.input = input;
         this.tokens = new ArrayList<>();
         this.current = 0;
@@ -59,7 +59,8 @@ public class Lexer implements Iterable<Lexer.Token> {
                         tokens.add(new Token(TokenType.NUMBER, readNumber()));
                     } else if (Character.isLetter(ch)) {
                         tokens.add(new Token(TokenType.IDENTIFIER, readIdentifier()));
-                    } else if (ch == '"') {
+                    } else if (ch == 'p' && input.startsWith("print", current)) {
+                        tokens.add(new Token(TokenType.PRINT, "print"));
 
                     } else {
                         throw new LexerError("Unsupported character: " + ch);

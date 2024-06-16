@@ -26,8 +26,8 @@ public class Main {
                     print y;
                     """;
 //Lexer produces tokens with different types, then these tokens are eaten by parser later and then parser will say smth is valid or invalid
-        Demo demo = new Demo(input);
-        for (Demo.Token token : demo) {
+        Lexer lexer = new Lexer(input);
+        for (Lexer.Token token : lexer) {
             System.out.println(token);
         }
 
