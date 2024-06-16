@@ -9,7 +9,7 @@ public class Lexer implements Iterable<Lexer.Token> {
 
     //lexer will be iterating through, we give string as input as string and output as tokens
     //configuration code, can be file too
-
+    //COMPUTE_CONFIG_STRING
     private final String input;
     private final List<Token> tokens;
     private int current;
