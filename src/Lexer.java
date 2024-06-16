@@ -1,24 +1,24 @@
 import LexerError.LexerError;
 
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
-
+import java.util.Iterator;
+import java.util.ArrayList;
 
 public class Lexer implements Iterable<Lexer.Token> {
-
-    //lexer will be iterating through, we give string as input as string and output as tokens
-    //configuration code, can be file too
-    //COMPUTE_CONFIG_STRING
     private final String input;
-    private final List<Token> tokens;
+    private final List<Demo.Token> tokens;
     private int current;
 
-    public Lexer(String inpout) {
-        this.input = inpout;
-        this.tokens = new ArrayList<Token>();
+    public Lexer(String input, List<Lexer.Token> tokens) {
+        this.input = input;
+        this.tokens = new ArrayList<>();
         this.current = 0;
         tokenize();
+    }
+
+    @Override
+    public Iterator<Token> iterator() {
+        return null;
     }
 
     public void tokenize() {
@@ -35,7 +35,7 @@ public class Lexer implements Iterable<Lexer.Token> {
                     current++;
                     break;
                 case '=':
-                    tokens.add(new Token(TokenType.ASSIGNMENT, "="));//its an ASSIGNMENT, so we need it
+                    tokens.add(new Demo.Token(Demo.TokenType.ASSIGNMENT, "="));//its an ASSIGNMENT, so we need it
                     current++;
                     break;
 
@@ -43,25 +43,25 @@ public class Lexer implements Iterable<Lexer.Token> {
                 case '-':
                 case '*':
                 case '/':
-                    tokens.add(new Token(TokenType.OPERATOR, Character.toString(ch)));//its an ASSIGNMENT, so we need it
+                    tokens.add(new Demo.Token(Demo.TokenType.OPERATOR, Character.toString(ch)));//its an ASSIGNMENT, so we need it
                     current++;
                     break;
                 case '"':
-                    tokens.add(new Token(TokenType.STRING, readString()));//its an ASSIGNMENT, so we need it
+                    tokens.add(new Demo.Token(Demo.TokenType.STRING, readString()));//its an ASSIGNMENT, so we need it
                     current++;
                     break;
                 case '%':
-                    tokens.add(new Token(TokenType.REFERENCES, readReference()));//its an ASSIGNMENT, so we need it
+                    tokens.add(new Demo.Token(Demo.TokenType.REFERENCES, readReference()));//its an ASSIGNMENT, so we need it
                     //current++;
                     break;
                 default:
                     if (isDigit(ch)) {
-                        tokens.add(new Token(TokenType.NUMBER, readNumber()));
+                        tokens.add(new Demo.Token(Demo.TokenType.NUMBER, readNumber()));
                     } else if (isAlpha(ch)) {
                         //we will have an identifier and lets read an identifier
                         //based on this identifier we will read and based on type:CONFIG,NUMBER etc, we will know
                         String identifier = readIdentifier();
-                        tokens.add(new Token(deriveTokenType(identifier), identifier));
+                        tokens.add(new Demo.Token(deriveTokenType(identifier), identifier));
                     } else {
                         throw new LexerError("Unsupported character: " + ch);
                     }
@@ -69,75 +69,7 @@ public class Lexer implements Iterable<Lexer.Token> {
         }
     }
 
-    //CONFIG is definition and configs
-    private static TokenType deriveTokenType(String identifier) {
-        return switch (identifier) {
-            case "config" -> TokenType.CONFIG;
-            case "update" -> TokenType.UPDATE;
-            case "compute" -> TokenType.COMPUTE;
-            case "show" -> TokenType.SHOW;
-            case "configs" -> TokenType.CONFIGS;
-            default -> TokenType.IDENTIFIER;
-        };
-    }
-
-    private String readIdentifier() {
-        //read while it is Alphanumeric, continue reading
-        StringBuilder stringBuilder = new StringBuilder();
-        while (current < input.length() && isAlphaNumeric(input.charAt(current))) {
-            stringBuilder.append(input.charAt(current));
-            current++;
-        }
-        return stringBuilder.toString();
-    }
-
-    private String readNumber() {
-        StringBuilder stringBuilder = new StringBuilder();
-        while (current < input.length() && isDigit(input.charAt(current))) {
-            stringBuilder.append(input.charAt(current));
-            current++;
-        }
-        return stringBuilder.toString();
-    }
-
-    private String readReference() {
-        StringBuilder builder = new StringBuilder();
-        current++;
-        while (current < input.length() && isAlphaNumeric(input.charAt(current))) {
-            builder.append(input.charAt(current));
-            current++;
-        }
-        return builder.toString();
-    }
-
-    private boolean isAlphaNumeric(char c) {
-        return isAlpha(c) || isDigit(c);
-    }
-
-    private static boolean isDigit(char c) {
-        return '0' <= c && c <= '9';
-    }
-
-    private static boolean isAlpha(char c) {
-        return ('a' <= c && c <= 'z') || ('A' <= c && c <= 'Z') || c == '_';
-    }
-
-    private String readString() {
-        //we know how to read a str that starts with "
-        StringBuilder builder = new StringBuilder();
-        current++;
-        while (current < input.length() && input.charAt(current) != '"') {
-            builder.append(input.charAt(current));
-            current++;
-        }
-        return builder.toString();
-    }
-
-    @Override
-    public Iterator<Token> iterator() {
-        return tokens.iterator();
-    }
-
+    //For output
     static class Token {
         final TokenType type;
         final String value;
@@ -146,7 +78,6 @@ public class Lexer implements Iterable<Lexer.Token> {
             this.type = type;
             this.value = value;
         }
-
         @Override
         public String toString() {
             return "Token{" +
@@ -159,8 +90,6 @@ public class Lexer implements Iterable<Lexer.Token> {
     enum TokenType {
         //TOKEN IS 2 THINGS TYPE AND VALUE
         //class that has members defined right away, enumeration
-        CONFIG, ASSIGNMENT, OPERATOR, UPDATE, COMPUTE, SHOW, CONFIGS, STRING, NUMBER, IDENTIFIER, REFERENCES, //FOR % SMTH
+        IDENTIFIER, ASSIGNMENT, NUMBER, OPERATOR, PUNCTUATION, STRING, PRINT
     }
-
-
 }
