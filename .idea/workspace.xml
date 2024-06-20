@@ -4,22 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7add3232-2dd6-45a2-9927-d7f5584f468e" name="Changes" comment="6/15/24">
-      <change afterPath="$PROJECT_DIR$/src/CS_Interpreters_Parsers/ASTNode.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/CS_Interpreters_Parsers/BinaryOpNode.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/CS_Interpreters_Parsers/Lexer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/CS_Interpreters_Parsers/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/CS_Interpreters_Parsers/NumberNode.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/CS_Interpreters_Parsers/Parser.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/CS_Interpreters_Parsers/ParserException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/CS_Interpreters_Parsers/Parsers" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/CS_Interpreters_Parsers/Token.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Demo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CS_Lexer/Demo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Lexer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CS_Lexer/Lexer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LexerError/LexerError.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CS_Lexer/LexerError.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CS_Lexer/Main.java" afterDir="false" />
-    </list>
+    <list default="true" id="7add3232-2dd6-45a2-9927-d7f5584f468e" name="Changes" comment="6/19/24" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -58,6 +43,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Application.CS_Interpreters_Lexer.Main.executor": "Run",
     "Application.CS_Interpreters_Parsers.Main.executor": "Run",
     "Application.Main.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
@@ -261,13 +247,22 @@
       <option name="project" value="LOCAL" />
       <updated>1718554664412</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="6/19/24">
+      <option name="closed" value="true" />
+      <created>1718844242489</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1718844242489</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="6/13/24" />
     <MESSAGE value="6/14/24" />
     <MESSAGE value="6/15/24" />
-    <option name="LAST_COMMIT_MESSAGE" value="6/15/24" />
+    <MESSAGE value="6/19/24" />
+    <option name="LAST_COMMIT_MESSAGE" value="6/19/24" />
   </component>
 </project>
