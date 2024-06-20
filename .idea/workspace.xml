@@ -5,9 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7add3232-2dd6-45a2-9927-d7f5584f468e" name="Changes" comment="6/15/24">
+      <change afterPath="$PROJECT_DIR$/src/CS_Interpreters_Parsers/ASTNode.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/CS_Interpreters_Parsers/BinaryOpNode.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/CS_Interpreters_Parsers/Lexer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/CS_Interpreters_Parsers/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/CS_Interpreters_Parsers/NumberNode.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/CS_Interpreters_Parsers/Parser.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/CS_Interpreters_Parsers/ParserException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/CS_Interpreters_Parsers/Parsers" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/CS_Interpreters_Parsers/Token.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Lexer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Lexer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Demo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CS_Lexer/Demo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Lexer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CS_Lexer/Lexer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LexerError/LexerError.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CS_Lexer/LexerError.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CS_Lexer/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,20 +58,51 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Application.CS_Interpreters_Parsers.Main.executor": "Run",
     "Application.Main.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "main",
-    "kotlin-language-version-configured": "true"
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/Users/alexasky111/IdeaProjects/P2/src"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="LexerError" />
     </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src" />
+    </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.CS_Interpreters_Parsers.Main">
+    <configuration name="CS_Interpreters_Lexer.Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="CS_Interpreters_Lexer.Main" />
+      <module name="P2" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="CS_Interpreters_Lexer.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CS_Interpreters_Parsers.Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="CS_Interpreters_Parsers.Main" />
+      <module name="P2" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="CS_Interpreters_Parsers.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Main" />
+      <option name="MAIN_CLASS_NAME" value="LexerError.Main" />
       <module name="P2" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -68,6 +110,8 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.CS_Interpreters_Parsers.Main" />
+        <item itemvalue="Application.CS_Interpreters_Lexer.Main" />
         <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
@@ -209,7 +253,15 @@
       <option name="project" value="LOCAL" />
       <updated>1718553982090</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="6/15/24">
+      <option name="closed" value="true" />
+      <created>1718554664412</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1718554664412</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">

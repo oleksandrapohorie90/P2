@@ -1,4 +1,4 @@
-import LexerError.LexerError;
+package CS_Interpreters_Lexer;
 
 import java.util.List;
 import java.util.Iterator;

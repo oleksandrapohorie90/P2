@@ -1,3 +1,5 @@
+package CS_Interpreters_Lexer;
+
 public class Main {
     public static void main(String[] args) {
         /**
@@ -24,7 +26,7 @@ public class Main {
                     y = x * (2 + 3);
                     }
                     print y;""";
-//Lexer produces tokens with different types, then these tokens are eaten by parser later and then parser will say smth is valid or invalid
+//CS_Lexer.Lexer produces tokens with different types, then these tokens are eaten by parser later and then parser will say smth is valid or invalid
         Lexer lexer = new Lexer(input);
         for (Lexer.Token token : lexer) {
             System.out.println(token);
