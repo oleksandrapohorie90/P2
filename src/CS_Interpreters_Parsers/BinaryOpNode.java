@@ -12,8 +12,8 @@ public class BinaryOpNode extends ASTNode{
             this.right = right;
             this.operationToken = operationToken;
         }
-
-    public void print(String indent){
+    @Override
+    public void print(String indent) {
         System.out.println(indent + "BinaryOp{" + operationToken.value + "}");
         if (left != null) {
             left.print(indent + "  ");
