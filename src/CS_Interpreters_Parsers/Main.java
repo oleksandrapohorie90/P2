@@ -18,7 +18,6 @@ public class Main {
         List<Token> tokens = Lexer.getHardcodedTokens();
         Parser parser = new Parser(tokens);
         ASTNode root = parser.parse(); //later there will be Interpreter to pass on
-
         root.print("  ");
     }
 }
