@@ -14,9 +14,8 @@ public class Parser {
     }
 
     private ASTNode expression() throws ParserException {
-
         ASTNode node = term();
-        while (currentToken != null && (currentToken.type == Token.Type.PLUS || currentToken.type == Token.Type.MINUS)) {
+        while (currentToken != null && (currentToken.type == Token.Type.PLUS || currentToken.type == Token.Type.MINUS || currentToken.type == Token.Type.GREATER)) {
             Token token = currentToken;
             consume(currentToken.type);
             node = new BinaryOpNode(node, term(), token);
@@ -26,7 +25,61 @@ public class Parser {
 
     public ASTNode parse() throws ParserException {
         //will give the top level node to traverse it, we will return the root of the parsed expression if we can parse it
-        return expression(); //term returns a Tree too, any expression is a term and term is a root of the Tree
+        //return expression(); //term returns a Tree too, any expression is a term and term is a root of the Tree
+        return block();
+    }
+
+    private ASTNode block() throws ParserException{
+        BlockNode block = new BlockNode();
+        while (currentToken != null && currentToken.type != Token.Type.RPAREN) {
+            block.addStatement(statement());
+        }
+        if (currentToken != null && currentToken.type == Token.Type.RPAREN) {
+            consume(Token.Type.RPAREN);
+        }
+        return block;
+    }
+
+    private ASTNode statement() throws ParserException {
+        if (currentToken.type == Token.Type.IDENTIFIER) {
+            return assignment();
+        } else if (currentToken.type == Token.Type.IF) {
+            return ifStatement();
+        } else if (currentToken.type == Token.Type.PRINT) {
+            return printStatement();
+        }
+        throw new ParserException("Unexpected token in statement: " + currentToken);
+    }
+
+    private ASTNode assignment() throws ParserException {
+        String variable = currentToken.value;
+        consume(Token.Type.IDENTIFIER);
+        consume(Token.Type.EQUAL);
+        ASTNode expression = expression();
+        consume(Token.Type.SEMICOLON);
+        return new AssignmentNode(variable, expression);
+    }
+
+    private ASTNode ifStatement() throws ParserException {
+        consume(Token.Type.IF);
+        consume(Token.Type.LPAREN);
+        ASTNode condition = expression();
+        consume(Token.Type.RPAREN);
+        consume(Token.Type.THEN);
+        ASTNode thenBranch = block();
+        ASTNode elseBranch = null;
+        if (currentToken.type == Token.Type.ELSE) {
+            consume(Token.Type.ELSE);
+            elseBranch = block();
+        }
+        return new IfNode(condition, thenBranch, elseBranch);
+    }
+
+    private ASTNode printStatement() throws ParserException {
+        consume(Token.Type.PRINT);
+        ASTNode expression = expression();
+        consume(Token.Type.SEMICOLON);
+        return new PrintNode(expression);
     }
 
     private ASTNode term() throws ParserException {
