@@ -128,6 +128,10 @@ public class Parser {
             consume(Token.Type.RPAREN);//if no right parenthesis consume() throws an exception
             return node;
         }
+        if (token.type == Token.Type.IDENTIFIER) {
+            consume(Token.Type.IDENTIFIER);
+            return new VariableNode(token);
+        }
 
         throw new ParserException("Unexpected token found for Factor : " + token);
     }
