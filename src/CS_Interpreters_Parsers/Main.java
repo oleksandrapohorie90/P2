@@ -10,7 +10,5 @@ public class Main {
         ASTNode root = parser.parse(); //later there will be Interpreter to pass on
 
         root.print("  ");
-
-
     }
 }

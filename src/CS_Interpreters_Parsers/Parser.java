@@ -29,13 +29,10 @@ public class Parser {
         return block();
     }
 
-    private ASTNode block() throws ParserException{
+    private ASTNode block() throws ParserException {
         BlockNode block = new BlockNode();
         while (currentToken != null && currentToken.type != Token.Type.RPAREN) {
             block.addStatement(statement());
-        }
-        if (currentToken != null && currentToken.type == Token.Type.RPAREN) {
-            consume(Token.Type.RPAREN);
         }
         return block;
     }
@@ -47,6 +44,13 @@ public class Parser {
             return ifStatement();
         } else if (currentToken.type == Token.Type.PRINT) {
             return printStatement();
+        } else if (currentToken.type == Token.Type.LPAREN) {
+            consume(Token.Type.LPAREN);
+            ASTNode block = block();
+            consume(Token.Type.RPAREN);
+            return block;
+        } else if (currentToken.type == Token.Type.ELSE) {
+            throw new ParserException("Unexpected token ELSE");
         }
         throw new ParserException("Unexpected token in statement: " + currentToken);
     }
@@ -66,11 +70,15 @@ public class Parser {
         ASTNode condition = expression();
         consume(Token.Type.RPAREN);
         consume(Token.Type.THEN);
+        consume(Token.Type.LPAREN);
         ASTNode thenBranch = block();
+        consume(Token.Type.RPAREN);
         ASTNode elseBranch = null;
-        if (currentToken.type == Token.Type.ELSE) {
+        if (currentToken != null && currentToken.type == Token.Type.ELSE) {
             consume(Token.Type.ELSE);
+            consume(Token.Type.LPAREN);
             elseBranch = block();
+            consume(Token.Type.RPAREN);
         }
         return new IfNode(condition, thenBranch, elseBranch);
     }
