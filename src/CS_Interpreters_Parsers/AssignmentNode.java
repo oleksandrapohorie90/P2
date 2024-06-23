@@ -11,8 +11,8 @@ public class AssignmentNode extends ASTNode{
 
     @Override
     public void print(String indent) {
-        System.out.println(indent+ "AssignmentNode{" +
-                variable + '=' + value +
-                '}');
+        System.out.println(indent+ "Assignment: " +
+                variable + " = ");
+        value.print(indent + " ");
     }
 }
