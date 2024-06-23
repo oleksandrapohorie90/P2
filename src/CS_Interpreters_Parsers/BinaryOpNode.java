@@ -14,9 +14,17 @@ public class BinaryOpNode extends ASTNode{
         }
 
     public void print(String indent){
-        System.out.println(indent+ "BinaryOp{" + operationToken.value + "}");
- left.print(indent + indent);
- right.print(indent+indent);
+        System.out.println(indent + "BinaryOp{" + operationToken.value + "}");
+        if (left != null) {
+            left.print(indent + "  ");
+        } else {
+            System.out.println(indent + "  null");
+        }
+        if (right != null) {
+            right.print(indent + "  ");
+        } else {
+            System.out.println(indent + "  null");
+        }
     }
 }
 

@@ -26,7 +26,7 @@ public class Parser {
 
     public ASTNode parse() throws ParserException {
         //will give the top level node to traverse it, we will return the root of the parsed expression if we can parse it
-        return term(); //term returns a Tree too, any expression is a term and term is a root of the Tree
+        return expression(); //term returns a Tree too, any expression is a term and term is a root of the Tree
     }
 
     private ASTNode term() throws ParserException {
