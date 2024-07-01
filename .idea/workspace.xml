@@ -4,11 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7add3232-2dd6-45a2-9927-d7f5584f468e" name="Changes" comment="6/19/24">
+    <list default="true" id="7add3232-2dd6-45a2-9927-d7f5584f468e" name="Changes" comment="6/23/24">
+      <change afterPath="$PROJECT_DIR$/src/CS_Interpreters_ASTS/SemanticAnalyzer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/CS_Interpreters_Parsers/BinaryOpNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CS_Interpreters_Parsers/BinaryOpNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/CS_Interpreters_Parsers/Lexer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CS_Interpreters_Parsers/Lexer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/CS_Interpreters_Parsers/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CS_Interpreters_Parsers/Parser.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -268,7 +266,119 @@
       <option name="project" value="LOCAL" />
       <updated>1718845863780</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="6/19/24">
+      <option name="closed" value="true" />
+      <created>1719156529664</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1719156529665</updated>
+    </task>
+    <task id="LOCAL-00021" summary="6/23/24">
+      <option name="closed" value="true" />
+      <created>1719159748686</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1719159748686</updated>
+    </task>
+    <task id="LOCAL-00022" summary="6/23/24">
+      <option name="closed" value="true" />
+      <created>1719159976496</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1719159976496</updated>
+    </task>
+    <task id="LOCAL-00023" summary="6/23/24">
+      <option name="closed" value="true" />
+      <created>1719160531853</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1719160531853</updated>
+    </task>
+    <task id="LOCAL-00024" summary="6/23/24">
+      <option name="closed" value="true" />
+      <created>1719160772508</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1719160772508</updated>
+    </task>
+    <task id="LOCAL-00025" summary="6/23/24">
+      <option name="closed" value="true" />
+      <created>1719161492178</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1719161492178</updated>
+    </task>
+    <task id="LOCAL-00026" summary="6/23/24">
+      <option name="closed" value="true" />
+      <created>1719162063956</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1719162063956</updated>
+    </task>
+    <task id="LOCAL-00027" summary="6/23/24">
+      <option name="closed" value="true" />
+      <created>1719162227615</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1719162227615</updated>
+    </task>
+    <task id="LOCAL-00028" summary="6/23/24">
+      <option name="closed" value="true" />
+      <created>1719162839773</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1719162839773</updated>
+    </task>
+    <task id="LOCAL-00029" summary="6/23/24">
+      <option name="closed" value="true" />
+      <created>1719165454036</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1719165454036</updated>
+    </task>
+    <task id="LOCAL-00030" summary="6/23/24">
+      <option name="closed" value="true" />
+      <created>1719166403501</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1719166403501</updated>
+    </task>
+    <task id="LOCAL-00031" summary="6/23/24">
+      <option name="closed" value="true" />
+      <created>1719166619245</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1719166619245</updated>
+    </task>
+    <task id="LOCAL-00032" summary="6/23/24">
+      <option name="closed" value="true" />
+      <created>1719166643363</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1719166643363</updated>
+    </task>
+    <task id="LOCAL-00033" summary="6/23/24">
+      <option name="closed" value="true" />
+      <created>1719172228371</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1719172228371</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -276,6 +386,18 @@
     <MESSAGE value="6/14/24" />
     <MESSAGE value="6/15/24" />
     <MESSAGE value="6/19/24" />
-    <option name="LAST_COMMIT_MESSAGE" value="6/19/24" />
+    <MESSAGE value="6/23/24" />
+    <option name="LAST_COMMIT_MESSAGE" value="6/23/24" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/CS_Interpreters_Parsers/Main.java</url>
+          <line>4</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
