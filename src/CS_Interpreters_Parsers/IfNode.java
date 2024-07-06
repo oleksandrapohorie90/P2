@@ -1,9 +1,9 @@
 package CS_Interpreters_Parsers;
 
 public class IfNode extends ASTNode{
-    private ASTNode value;
-    private ASTNode thenBranch;
-    private ASTNode elseBranch;
+    public ASTNode value;
+    public ASTNode thenBranch;
+    public ASTNode elseBranch;
 
     public IfNode(ASTNode value, ASTNode thenBranch, ASTNode elseBranch) {
         this.value = value;

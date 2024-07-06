@@ -5,7 +5,7 @@ import java.util.List;
 
 public class BlockNode extends ASTNode{
 
-    private List<ASTNode> statements;
+    public List<ASTNode> statements;
 
     public BlockNode() {
         this.statements = new ArrayList<>();

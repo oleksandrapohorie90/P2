@@ -1,7 +1,7 @@
 package CS_Interpreters_Parsers;
 
 public class PrintNode extends ASTNode{
-    private ASTNode value;
+    public ASTNode value;
 
     public PrintNode(ASTNode value) {
         this.value = value;
