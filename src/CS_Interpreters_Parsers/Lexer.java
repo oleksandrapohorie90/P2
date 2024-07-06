@@ -51,5 +51,7 @@ public class Lexer {
                 new Token(Token.Type.IDENTIFIER, "y"),
                 new Token(Token.Type.SEMICOLON, ";")
         );
+
     }
+
 }

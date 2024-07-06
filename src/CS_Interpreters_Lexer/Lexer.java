@@ -5,9 +5,9 @@ import java.util.Iterator;
 import java.util.ArrayList;
 
 public class Lexer implements Iterable<Lexer.Token> {
-    private final String input;
-    private final List<Lexer.Token> tokens;
-    private int current;
+    public final String input;
+    public final List<Lexer.Token> tokens;
+    public int current;
 
     public Lexer(String input) {
         this.input = input;
@@ -15,7 +15,9 @@ public class Lexer implements Iterable<Lexer.Token> {
         this.current = 0;
         tokenize();
     }
-
+    public List<Token> getTokens(){
+        return tokens;
+    }
     public void tokenize() {
         //anything that is in our BNF form
         //word config, update,compute
@@ -106,9 +108,9 @@ public class Lexer implements Iterable<Lexer.Token> {
     }
 
     //For output
-    static class Token {
-        final TokenType type;
-        final String value;
+    public static class Token {
+        public final TokenType type;
+        public final String value;
 
         public Token(TokenType type, String value) {
             this.type = type;
@@ -122,6 +124,7 @@ public class Lexer implements Iterable<Lexer.Token> {
                     ", value='" + value + '\'' +
                     '}';
         }
+
     }
 
     enum TokenType {

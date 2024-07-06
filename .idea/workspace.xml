@@ -6,9 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="7add3232-2dd6-45a2-9927-d7f5584f468e" name="Changes" comment="7/5/24">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/CS_Interpreters_ASTS/SemanticAnalyzer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CS_Interpreters_ASTS/SemanticAnalyzer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/CS_Interpreters_Parsers/AssignmentNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CS_Interpreters_Parsers/AssignmentNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/CS_Interpreters_Parsers/IfNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CS_Interpreters_Parsers/IfNode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/CS_Interpreters_Lexer/Lexer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CS_Interpreters_Lexer/Lexer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/CS_Interpreters_Lexer/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/CS_Interpreters_Parsers/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CS_Interpreters_Parsers/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,12 +66,12 @@
     </key>
   </component>
   <component name="RunManager" selected="Application.CS_Interpreters_Parsers.Main">
-    <configuration name="CS_Interpreters_Lexer.Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="CS_Interpreters_Lexer.Main" />
+    <configuration name="CS_Interpreters_Parsers.Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="CS_Interpreters_Parsers.Main" />
       <module name="P2" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="CS_Interpreters_Lexer.*" />
+          <option name="PATTERN" value="CS_Interpreters_Parsers.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -102,7 +102,7 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.CS_Interpreters_Parsers.Main" />
-        <item itemvalue="Application.CS_Interpreters_Lexer.Main" />
+        <item itemvalue="Application.CS_Interpreters_Parsers.Main" />
         <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
@@ -396,7 +396,15 @@
       <option name="project" value="LOCAL" />
       <updated>1720227139657</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL-00036" summary="7/5/24">
+      <option name="closed" value="true" />
+      <created>1720229396622</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1720229396622</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -408,16 +416,5 @@
     <MESSAGE value="7/1/24" />
     <MESSAGE value="7/5/24" />
     <option name="LAST_COMMIT_MESSAGE" value="7/5/24" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/CS_Interpreters_Parsers/Main.java</url>
-          <line>4</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>
