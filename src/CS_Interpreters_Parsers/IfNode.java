@@ -1,26 +1,26 @@
 package CS_Interpreters_Parsers;
 
 public class IfNode extends ASTNode{
-    public ASTNode value;
-    public ASTNode thenBranch;
-    public ASTNode elseBranch;
+    public ASTNode condition;
+    public ASTNode ifBlock;
+    public ASTNode elseBlock;
 
-    public IfNode(ASTNode value, ASTNode thenBranch, ASTNode elseBranch) {
-        this.value = value;
-        this.thenBranch = thenBranch;
-        this.elseBranch = elseBranch;
+    public IfNode(ASTNode condition, ASTNode ifBlock, ASTNode elseBlock) {
+        this.condition = condition;
+        this.ifBlock = ifBlock;
+        this.elseBlock = elseBlock;
     }
 
     @Override
     public void print(String indent) {
         System.out.println(indent + "If Statement: ");
         System.out.println(indent + "  Condition: ");
-        value.print(indent + "    ");
-        System.out.println(indent + "  Then Block");
-        thenBranch.print(indent + "    ");
-        if (elseBranch != null) {
-            System.out.println(indent + "  Else Block");
-            elseBranch.print(indent + "    ");
+        condition.print(indent + "    ");
+        System.out.println(indent + "  If Block: ");
+        ifBlock.print(indent + "    ");
+        if (elseBlock != null) {
+            System.out.println(indent + "  Else Block: ");
+            elseBlock.print(indent + "    ");
         }
     }
 }

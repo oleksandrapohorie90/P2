@@ -1,18 +1,16 @@
 package CS_Interpreters_Parsers;
 
 public class AssignmentNode extends ASTNode{
-    public String variable;
-    public ASTNode value;
+    public String left;
+    public ASTNode right;
 
-    public AssignmentNode(String variable, ASTNode value) {
-        this.variable = variable;
-        this.value = value;
+    public AssignmentNode(String left, ASTNode right) {
+        this.left = left;
+        this.right = right;
     }
 
     @Override
     public void print(String indent) {
-        System.out.println(indent+ "Assignment: " +
-                variable + " = ");
-        value.print(indent + " ");
+
     }
 }
