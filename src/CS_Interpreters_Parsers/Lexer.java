@@ -2,6 +2,7 @@ package CS_Interpreters_Parsers;
 
 import CS_Interpreters_Lexer.LexerError;
 
+import javax.print.DocFlavor;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -9,7 +10,6 @@ import java.util.List;
 import static CS_Interpreters_Parsers.Token.Type.*;
 import static java.lang.Character.isDigit;
 import static java.lang.Character.isLetterOrDigit;
-
 
 public class Lexer implements Iterable<Token> {
 
@@ -89,37 +89,58 @@ public class Lexer implements Iterable<Token> {
                         current += 2;
                         break;
                     } else {
-                        tokens.add(new Token(ASSIGN))
+                        tokens.add(new Token(ASSIGN, "="));
+                        current++;
                     }
+                    break;
                 case '+':
                 case '-':
                 case '*':
                 case '/':
-                case '>':
-                case '<':
-                    tokens.add(.OPERATOR, Character.toString(ch)));
+                    tokens.add(new Token(OPERATOR, Character.toString(ch)));
                     current++;
                     break;
                 case '(':
+                    tokens.add(new Token(LPAREN, "("));
+                    current++;
+                    break;
                 case ')':
+                    tokens.add(new Token(RPAREN, ")"));
+                    current++;
+                    break;
                 case '{':
+                    tokens.add(new Token(LBRACE, "{"));
+                    current++;
+                    break;
                 case '}':
+                    tokens.add(new Token(RBRACE, "}"));
+                    current++;
+                    break;
                 case ';':
-                    tokens.add(PUNCTUATION, Character.toString(ch)));
+                    tokens.add(new Token(SEMICOLON, ";"));
                     current++;
                     break;
                 case '"':
-                    tokens.add(STRING, readString()));
+                    tokens.add(new Token(STRING, readString()));
                     current++;
+                    break;
+                case '>':
+                case '<':
+                case '!':
+                    if (current + 1 < input.length() && input.charAt(current + 1) == '=') {
+                        tokens.add(new Token(ROPERATOR, ch + "="));
+                        current += 2;
+                    } else {
+                        tokens.add(new Token(ROPERATOR, Character.toString(ch)));
+                        current++;
+                    }
                     break;
                 default:
                     if (isDigit(ch)) {
-                        tokens.add(.NUMBER, readNumber()));
-                    } else if (ch == 'p' && input.startsWith("print", current)) {
-                        tokens.add(.PRINT, "print"));
-                        current += 5;
-                    } else if (Character.isLetter(ch)) {
-                        tokens.add(.IDENTIFIER, readIdentifier()));
+                        tokens.add(new Token(NUMBER, readNumber()));
+                    } else if (isAlpha(ch)) {
+                        String identifier = readIdentifier();
+                        tokens.add(new Token(deriveTokenType(identifier),identifier));
                     } else {
                         throw new LexerError("Unsupported character: " + ch);
                     }
