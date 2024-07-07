@@ -81,25 +81,30 @@ public class Parser {
         consume(Token.Type.IF);
         consume(Token.Type.LPAREN);
         ASTNode condition = expression();
+//        consume(Token.Type.RPAREN);
+//        consume(Token.Type.THEN);
+//        consume(Token.Type.LPAREN);
+//        ASTNode thenBranch = block();
+//        consume(Token.Type.RPAREN);
+//        ASTNode elseBranch = null;
+        while (currentToken != null && (currentToken.type == Token.Type.IDENTIFIER || currentToken.type == Token.Type.NUMBER || currentToken.type == Token.Type.STRING || currentToken.type == Token.Type.ROPERATOR)) {
+            consume(currentToken.type);
+        }
         consume(Token.Type.RPAREN);
-        consume(Token.Type.THEN);
-        consume(Token.Type.LPAREN);
-        ASTNode thenBranch = block();
-        consume(Token.Type.RPAREN);
-        ASTNode elseBranch = null;
+        ASTNode ifBlock = block();
+        ASTNode elseBlock = null;
+
         if (currentToken != null && currentToken.type == Token.Type.ELSE) {
             consume(Token.Type.ELSE);
-            consume(Token.Type.LPAREN);
-            elseBranch = block();
-            consume(Token.Type.RPAREN);
+            elseBlock = block();
         }
-        return new IfNode(condition, thenBranch, elseBranch);
+        return new IfNode(condition, ifBlock, elseBlock);
     }
 
     private ASTNode printStatement() throws ParserException {
         consume(Token.Type.PRINT);
         ASTNode expression = expression();
-        consume(Token.Type.SEMICOLON);
+        //consume(Token.Type.SEMICOLON);
         return new PrintNode(expression);
     }
 
@@ -144,13 +149,12 @@ public class Parser {
             return new NumberNode(token);
         }
         //we need to consume left parenthesis and the rest should be an expression to give us a node
-        if (token.type == Token.Type.LPAREN) {
+        else if (token.type == Token.Type.LPAREN) {
             consume(Token.Type.LPAREN);
             ASTNode node = expression();
             consume(Token.Type.RPAREN);//if no right parenthesis consume() throws an exception
             return node;
-        }
-        if (token.type == Token.Type.IDENTIFIER) {
+        } else if (token.type == Token.Type.IDENTIFIER) {
             return var();
         }
         throw new ParserException("Unexpected token found for Factor : " + token);
