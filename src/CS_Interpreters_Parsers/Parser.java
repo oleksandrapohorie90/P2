@@ -17,9 +17,9 @@ public class Parser {
 
     private ASTNode expression() throws ParserException {
         ASTNode node = term();
-        while (currentToken != null && (currentToken.type == Token.Type.PLUS || currentToken.type == Token.Type.MINUS || currentToken.type == Token.Type.GREATER)) {
+        while (currentToken != null && (currentToken.type == Token.Type.PLUS || currentToken.type == Token.Type.MINUS || currentToken.type == Token.Type.OPERATOR)) {
             Token token = currentToken;
-            consume(currentToken.type);
+            consume(token.type);
             node = new BinaryOpNode(node, term(), token);
         }
         return node;
@@ -43,7 +43,7 @@ public class Parser {
         List<ASTNode> block = new ArrayList<>();
         while (currentToken != null && currentToken.type != Token.Type.RBRACE) {
             block.add(statement());
-            if(currentToken.type == Token.Type.SEMICOLON){
+            if (currentToken.type == Token.Type.SEMICOLON) {
                 consume(Token.Type.SEMICOLON);
             }
         }
@@ -128,7 +128,7 @@ public class Parser {
                 currentToken = null; //otherwise we reached the end
             }
         } else {
-            throw new ParserException("Unexpected token " + type);
+            throw new ParserException("Unexpected token " + currentToken);
         }
     }
 
@@ -151,10 +151,8 @@ public class Parser {
             return node;
         }
         if (token.type == Token.Type.IDENTIFIER) {
-            consume(Token.Type.IDENTIFIER);
-            return new Var(token);
+            return var();
         }
-
         throw new ParserException("Unexpected token found for Factor : " + token);
     }
 
