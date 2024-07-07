@@ -1,4 +1,6 @@
 package CS_Interpreters_Parsers;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class Parser {
@@ -26,7 +28,14 @@ public class Parser {
     public ASTNode parse() throws ParserException {
         //will give the top level node to traverse it, we will return the root of the parsed expression if we can parse it
         //return expression(); //term returns a Tree too, any expression is a term and term is a root of the Tree
-        return block();
+        List<ASTNode> statements = new ArrayList<>();
+        while (currentToken != null) {
+            statements.add(statement());
+            if (currentToken != null && currentToken.type == Token.Type.SEMICOLON) {
+                consume(Token.Type.SEMICOLON);
+            }
+        }
+        return new BlockNode(statements);
     }
 
     private ASTNode block() throws ParserException {
@@ -40,28 +49,27 @@ public class Parser {
     private ASTNode statement() throws ParserException {
         if (currentToken.type == Token.Type.IDENTIFIER) {
             return assignment();
-        } else if (currentToken.type == Token.Type.IF) {
-            return ifStatement();
-        } else if (currentToken.type == Token.Type.PRINT) {
-            return printStatement();
-        } else if (currentToken.type == Token.Type.LPAREN) {
-            consume(Token.Type.LPAREN);
-            ASTNode block = block();
-            consume(Token.Type.RPAREN);
-            return block;
-        } else if (currentToken.type == Token.Type.ELSE) {
-            throw new ParserException("Unexpected token ELSE");
         }
-        throw new ParserException("Unexpected token in statement: " + currentToken);
+        if (currentToken.type == Token.Type.IF) {
+            return ifStatement();
+        }
+        if (currentToken.type == Token.Type.PRINT) {
+            return printStatement();
+        }
+        if (currentToken.type == Token.Type.LBRACE) {
+            return block();
+        }
+        if (currentToken.type == Token.Type.VAR) {
+            return declaration();
+        }
+        return expression();
     }
 
     private ASTNode assignment() throws ParserException {
-        String variable = currentToken.value;
-        consume(Token.Type.IDENTIFIER);
-        consume(Token.Type.EQUAL);
+        Var var = var();
+        consume(Token.Type.ASSIGN);
         ASTNode expression = expression();
-        consume(Token.Type.SEMICOLON);
-        return new AssignmentNode(variable, expression);
+        return new AssignmentNode(var, expression);
     }
 
     private ASTNode ifStatement() throws ParserException {
@@ -118,6 +126,7 @@ public class Parser {
             throw new ParserException("Unexpected token " + type);
         }
     }
+
     private ASTNode factor() throws ParserException {
         //factor is just an expression or a number <======
         //it has to be a number token and we just return it
@@ -142,5 +151,19 @@ public class Parser {
         }
 
         throw new ParserException("Unexpected token found for Factor : " + token);
+    }
+
+    private ASTNode declaration() throws ParserException {
+        consume(Token.Type.VAR);
+        Var var = var();
+        consume(Token.Type.ASSIGN);
+        ASTNode expression = expression();
+        return new Vardecl(var, expression);
+    }
+
+    private Var var() throws ParserException {
+        Token token = currentToken;
+        consume(Token.Type.IDENTIFIER);
+        return new Var(token);
     }
 }
