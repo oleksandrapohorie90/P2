@@ -1,13 +1,12 @@
 package CS_Interpreters_Parsers;
 
 import CS_Interpreters_ASTS.SemanticAnalyzer;
-import CS_Interpreters_Lexer.Lexer;
 
 import java.util.List;
 
 public class Main {
     public static void main(String[] args) throws ParserException {
-        /**
+        /*
          Input code:
          x=5
          if(x>3){
@@ -33,19 +32,17 @@ public class Main {
                     print y;""";
 //CS_Lexer.Lexer produces tokens with different types, then these tokens are eaten by parser later and then parser will say smth is valid or invalid
         Lexer lexer = new Lexer(input);
-        for (Lexer.Token token : lexer) {
+        for (Token token : lexer) {
             System.out.println(token);
         }
 
-        List<Lexer.Token> tokens = lexer.getTokens(); //method to get tokens
+        List<Token> tokens = lexer.getTokens(); //method to get tokens
         Parser parser = new Parser(tokens);
         ASTNode root = parser.parse();
         root.print("    ");
 
         SemanticAnalyzer semanticAnalyzer = new SemanticAnalyzer();
         semanticAnalyzer.visit(root);
-
-        //add interpreter
 
     }
 }
