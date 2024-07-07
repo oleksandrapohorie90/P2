@@ -39,11 +39,16 @@ public class Parser {
     }
 
     private ASTNode block() throws ParserException {
-        BlockNode block = new BlockNode();
-        while (currentToken != null && currentToken.type != Token.Type.RPAREN) {
-            block.addStatement(statement());
+        consume(Token.Type.LBRACE);
+        List<ASTNode> block = new ArrayList<>();
+        while (currentToken != null && currentToken.type != Token.Type.RBRACE) {
+            block.add(statement());
+            if(currentToken.type == Token.Type.SEMICOLON){
+                consume(Token.Type.SEMICOLON);
+            }
         }
-        return block;
+        consume(Token.Type.RBRACE);
+        return new BlockNode(block);
     }
 
     private ASTNode statement() throws ParserException {
