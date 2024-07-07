@@ -7,6 +7,8 @@ import java.util.Iterator;
 import java.util.List;
 
 import static CS_Interpreters_Parsers.Token.Type.*;
+import static java.lang.Character.isDigit;
+import static java.lang.Character.isLetterOrDigit;
 
 
 public class Lexer implements Iterable<Token> {
@@ -82,11 +84,11 @@ public class Lexer implements Iterable<Token> {
                     current++;
                     break;
                 case '=':
-                    if(current +1 < input.length() && input.charAt(current+1) == '=') {
+                    if (current + 1 < input.length() && input.charAt(current + 1) == '=') {
                         tokens.add(new Token(ROPERATOR, "=="));
                         current += 2;
                         break;
-                    }else{
+                    } else {
                         tokens.add(new Token(ASSIGN))
                     }
                 case '+':
@@ -111,14 +113,14 @@ public class Lexer implements Iterable<Token> {
                     current++;
                     break;
                 default:
-                    if (Character.isDigit(ch)) {
+                    if (isDigit(ch)) {
                         tokens.add(.NUMBER, readNumber()));
                     } else if (ch == 'p' && input.startsWith("print", current)) {
                         tokens.add(.PRINT, "print"));
                         current += 5;
                     } else if (Character.isLetter(ch)) {
                         tokens.add(.IDENTIFIER, readIdentifier()));
-                    }  else {
+                    } else {
                         throw new LexerError("Unsupported character: " + ch);
                     }
             }
@@ -127,7 +129,7 @@ public class Lexer implements Iterable<Token> {
 
     private String readNumber() {
         StringBuilder stringBuilder = new StringBuilder();
-        while (current < input.length() && Character.isDigit(input.charAt(current))) {
+        while (current < input.length() && isDigit(input.charAt(current))) {
             stringBuilder.append(input.charAt(current));
             current++;
         }
@@ -137,7 +139,7 @@ public class Lexer implements Iterable<Token> {
     private String readIdentifier() {
         //read while it is Alphanumeric, continue reading
         StringBuilder stringBuilder = new StringBuilder();
-        while (current < input.length() && (Character.isLetterOrDigit(input.charAt(current)) || input.charAt(current) == '_')) {
+        while (current < input.length() && isLetterOrDigit(input.charAt(current))) {
             stringBuilder.append(input.charAt(current));
             current++;
         }
@@ -154,6 +156,19 @@ public class Lexer implements Iterable<Token> {
         }
         return stringBuilder.toString();
     }
+
+    private boolean isAlphaNumeric(char c) {
+        return isAlpha(c) || isDigit(c);
+    }
+
+    private boolean isAlpha(char c) {
+        return ('a' <= c && c <= 'z') || ('A' <= c && c <= 'Z') || c == '_';
+    }
+
+    private boolean isDigit(char c) {
+        return '0' <= c && c <= '9';
+    }
+
     private Token.Type deriveTokenType(String identifier) {
         return switch (identifier) {
             case "config" -> CONFIG;
@@ -171,7 +186,11 @@ public class Lexer implements Iterable<Token> {
 
     @Override
     public Iterator<Token> iterator() {
+        return tokens.iterator();
+    }
 
+    public List<Token> getTokens() {
+        return tokens;
     }
 }
 
