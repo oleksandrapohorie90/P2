@@ -1,10 +1,10 @@
 package CS_Interpreters_Parsers;
 
-public class VariableNode extends ASTNode {
+public class Var extends ASTNode {
     public Token variableToken;
     public String name;
 
-    public VariableNode(Token variableToken) {
+    public Var(Token variableToken) {
         this.variableToken = variableToken;
         this.name = variableToken.value;
     }

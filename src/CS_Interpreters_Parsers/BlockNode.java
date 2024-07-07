@@ -1,14 +1,12 @@
 package CS_Interpreters_Parsers;
-
-import java.util.ArrayList;
 import java.util.List;
 
 public class BlockNode extends ASTNode{
 
     public List<ASTNode> statements;
 
-    public BlockNode() {
-        this.statements = new ArrayList<>();
+    public BlockNode(List<ASTNode>statements) {
+        this.statements = statements;
     }
 
     public void addStatement(ASTNode statement) {

@@ -138,7 +138,7 @@ public class Parser {
         }
         if (token.type == Token.Type.IDENTIFIER) {
             consume(Token.Type.IDENTIFIER);
-            return new VariableNode(token);
+            return new Var(token);
         }
 
         throw new ParserException("Unexpected token found for Factor : " + token);

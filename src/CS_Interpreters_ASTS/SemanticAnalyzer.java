@@ -2,7 +2,6 @@ package CS_Interpreters_ASTS;
 
 import CS_Interpreters_Parsers.*;
 
-import java.text.NumberFormat;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.Stack;
@@ -28,8 +27,8 @@ public class SemanticAnalyzer {
             }
             //put varName to current scope
             scopes.peek().add(varName);//take the latest element, declare var in scope
-        } else if (node instanceof VariableNode) {
-            String varName = ((VariableNode) node).name;
+        } else if (node instanceof Var) {
+            String varName = ((Var) node).name;
             if (!isvariableDefined(varName)) {
                 throw new ParserException("Unexpected identifier: " + varName);
             }

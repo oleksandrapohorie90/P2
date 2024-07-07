@@ -1,11 +1,11 @@
 package CS_Interpreters_Parsers;
 
 public class Vardecl extends ASTNode {
-    public final VariableNode varNode;
+    public final Var varNode;
     ASTNode expression;
 
 
-    public Vardecl(VariableNode varNode, ASTNode expression) {
+    public Vardecl(Var varNode, ASTNode expression) {
         this.varNode = varNode;
         this.expression = expression;
     }
