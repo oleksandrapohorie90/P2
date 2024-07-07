@@ -1,5 +1,4 @@
 package CS_Interpreters_ASTS;
-
 import CS_Interpreters_Parsers.*;
 
 import java.util.HashSet;
@@ -8,7 +7,6 @@ import java.util.Stack;
 
 public class SemanticAnalyzer {
     private final Stack<Set<String>> scopes = new Stack<>();
-
     //parser returns the root node
     //go thru all the children and check if everything is good
     public void visit(ASTNode node) throws ParserException {
@@ -21,7 +19,7 @@ public class SemanticAnalyzer {
             //nothing, semantic analyzer doesn't return anything
             //unless there is an error
         } else if (node instanceof Vardecl varDecl) {
-            String varName = varDecl.varNode.name;
+            String varName = varDecl.var.name;
             if (!isvariableDefined(varName)) {
                 throw new ParserException("Identifier already defined: " + varName);
             }
@@ -33,7 +31,7 @@ public class SemanticAnalyzer {
                 throw new ParserException("Unexpected identifier: " + varName);
             }
         } else if (node instanceof AssignmentNode assignNode) {
-            String varName = assignNode.left;
+            String varName = assignNode.left.name;
             if (!isvariableDefined(varName)) {
                 throw new ParserException("Unexpected identifier: " + varName);
             }
